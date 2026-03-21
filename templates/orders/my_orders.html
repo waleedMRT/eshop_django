@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section">
+    <h1 class="title">My Orders</h1>
+    <div class="table">
+        <table>
+        <thead>
+            <th>Id</th>
+            <th>Created at</th>
+            <th>Total Price</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{order.id}}</td>
+                    <td>{{order.created_at}}</td>
+                    <td>{{order.total_price}} $</td>
+                    {% if order.status == 'pending'%}
+                    <td style="background-color: #ffa940; color: #fff6ec; border-color: #fff6ec;">{{order.status}}</td>
+                    {% elif order.status == 'processing'%}
+                    <td style="background-color: #4093ff; color: #ecf4ff; border-color: #ecf4ff;">{{order.status}}</td>
+                    {% elif order.status == 'shipped'%}
+                    <td style="background-color: #4093ff; color: #ecf4ff; border-color: #ecf4ff;">{{order.status}}</td>
+                    {% elif order.status == 'delivred'%}
+                    <td style="background-color: #04fa00; color: #e3ffe1; border-color: #e3ffe1;">{{order.status}}</td>
+                    {% endif %}
+                </tr>
+            {% empty %}
+                <h3 class="title">
+                    No orders Available
+                </h3>
+            {% endfor%}
+        </tbody>
+    </table>
+    </div>
+    
+</section>
+{% endblock content %}

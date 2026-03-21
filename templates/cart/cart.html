@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section">
+    <h1 class="title">
+        Your
+        <span>Cart</span>
+    </h1>
+    <div class="cards">
+        {% for item in items %}
+            <div class="card">
+                <div class="card__image">
+                    {% if item.product.image %}
+                    <img src="{{ item.product.image.url}}" alt="err" width="200px">
+                    {% endif %}
+                </div>
+                <div class="card__content">
+                <h2>{{item.product.name}}</h2>
+                    <p> <span style="color: #333; font-weight: 600;">Price: </span> {{item.product.price}} $</p>
+                    <p> <span style="color: #333; font-weight: 600;">Quantiy: </span> {{item.quantity}} </p>
+                    <p> <span style="color: #333; font-weight: 600;">Total Price: </span> {{item.total_price}} $</p>
+                    <div class="qua__btns">
+                        <a href="{% url 'increase_quantity' item.id %}">
+                        <button> + </button>
+                        </a>
+                        <a href="{% url 'decrease_quantity' item.id %}">
+                            <button class="add__cart__btn">-</button>
+                        </a>
+                    </div>
+                    <a href="{% url 'product_details' item.product.id %}">
+                        <button>View product</button>
+                    </a>
+                    <a href="{% url 'delete_cart_item' item.id %}">
+                        <button class="add__cart__btn">Delete Item</button>
+                    </a> 
+                     
+                </div>
+            </div>
+        {% empty %}
+        <h3 class="title">
+            No Items Available
+        </h3>
+        {% endfor%}
+    </div>
+   
+    <div class="total_price">
+        <h3>
+            Total Cart Price: 
+        </h3>
+        <span>
+            {{ cart.total_cart_price}} $
+        </span>
+    </div>
+    {% if total_items > 0 %}
+    <a href="{% url 'ckeckout' %}">
+        <button class="checkout__btn">Checkout</button>
+    </a>
+    {% endif %}
+    
+</section>
+
+{% endblock content %}

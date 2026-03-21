@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="section">
+    <h1 class="title">
+        Product Details
+    </h1>
+    <div class="details__container">
+         <div class="detail__image">
+        {% if product.image %}
+        <img src="{{ product.image.url }}" alt="err" width="200px">
+        {% endif %}
+    </div>
+    <div class="detail__content">
+        <h1> {{product.name}}</h1>
+        <p> <span>description:  </span> {{product.description}}</p> <hr>
+        <p> <span>price:  </span>{{product.price}} $</p> <hr>
+        <p> <span>stock:  </span> {{product.stock}}</p> <hr>
+        <p> <span>category:  </span> {{product.category}}</p> <hr>
+    </div>
+    </div>
+   
+</section>
+<div class="back__button">
+    <a href="{% url 'all_products'%}">
+    <button class="button">back</button>
+    </a>
+</div>
+
+
+{% endblock content %}

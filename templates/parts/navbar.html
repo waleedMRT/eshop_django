@@ -1,0 +1,41 @@
+<nav>
+    <div class="nav__header">
+        <div class="nav__logo">
+            <a href="{% url 'home' %}">SHOP</a>
+        </div>
+        <div class="menu__btn" id="menu-btn">
+        <span>
+            <i class="ri-menu-line" id="menu-icon"></i>
+        </span>
+    </div>
+    </div>
+    <ul class="nav__links" id="nav-links">
+        <li class="link"><a href="{% url 'all_products' %}">Products</a></li>
+        
+        {% if user.is_authenticated %}
+            <li class="link"><a href="#">Profile</a></li>
+            <li class="cart__li link">
+                <a href="{% url 'cart'%}">Cart</a>
+                {% if total_items > 0 %}
+                <div>{{total_items}}</div>
+                {% endif%}
+            </li>
+            <li class="link"><a href="{% url 'my_orders'%}">My Orders</a></li>
+            <li class="link"><a href="{% url 'logout'%}">Logout</a></li>
+        {% else %}
+            <li class="link"><a href="{% url 'register'%}">Register</a></li>
+            <li class="link"><a href="{% url 'login'%}">Log in</a></li>
+        {% endif %}
+        <li>
+            <form action="{% url 'search' %}" method="GET">
+                <div class="search">
+                    <input type="search" name="search" class="inp__search" placeholder="Search Product...">
+                    <button type="submit"><i class="ri-search-line"></i></button>
+                </div>
+            </form>
+        </li>
+    </ul>
+    
+    
+    
+</nav>

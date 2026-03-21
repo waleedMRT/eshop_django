@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="register section">
+    <h1 class="title">Login</h1>
+    <form method="POST" class="form">
+        <h2 class="animated__title">Sign in</h2>
+        {% csrf_token %}
+        <div>
+            {{form.username.label}}
+            {{form.username}}
+        </div>
+        <div>
+            {{form.password.label}}
+            {{form.password}}
+        </div>
+        <button class="button log__btn" type="submit"> Log In </button>
+        <small>
+            need to register?,
+            <span><a href="{% url 'register'%}">sign up</a></span>
+        </small>
+    </form>
+</section>
+{% endblock content %}
