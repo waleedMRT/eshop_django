@@ -134,5 +134,8 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
-# HOST
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.up.railway.app'
+]
 
